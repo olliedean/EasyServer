@@ -18,6 +18,11 @@ logger.info(`
 logger.info('Version: 1.0.0     Author: @olliedean');
 logger.info('Make sure to check out the README.md for more information on how to use this software.\n\n');
 
+if(!fs.existsSync('client')) {
+    logger.error('The client folder does not exist. Please make sure you have a client folder with your modded minecraft instance in.');
+    process.exit(1);
+}
+
 logger.info("Scanning the mod folder for files to ignore...");
 
 let modFilesToIgnore = config.modFilesToIgnore;
@@ -86,3 +91,9 @@ if(fs.existsSync('./client/kubejs')) {
         execSync(`cp -r ./client/kubejs/* ./server/kubejs/`);
     }
 }
+
+logger.info("Platform: " + process.platform);
+logger.info("Minecraft Version: " + config.minecraftVersion);
+
+
+logger.info("Finished copying files to the server folder. You can now start the server by running 'npm run start' in the server folder.");
