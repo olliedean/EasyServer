@@ -1,0 +1,19 @@
+{
+  "name": "EasyServer",
+  "version": "1.0.0",
+  "description": "A NodeJS script to easily start up a minecraft server for any mod pack",
+  "main": "index.js",
+  "repository": "https://github.com/olliedean/EasyServer",
+  "author": "olliedean",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "log4js": "^6.9.1",
+    "nodemon": "^3.1.0"
+  }
+}
