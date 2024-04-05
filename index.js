@@ -23,6 +23,22 @@ if(!fs.existsSync('client')) {
     process.exit(1);
 }
 
+if(config.modFilesToIgnore.length === 0) {
+    logger.warn('You have not added any files to ignore in the config file. This could cause issues with the server. Please add files to ignore to the config file.');
+}
+
+if(config.minecraftVersion === '') {
+    logger.error('You have not set the minecraft version in the config file. Please set the minecraft version in the config file.');
+    process.exit(1);
+}
+
+if(config.loaderType === '') {
+    logger.error('You have not set the loader type in the config file. Please set the loader type in the config file.');
+    logger.error('If you are using Fabric, set the loader to "fabric"');
+    logger.error('If you are using Forge, set the loader to "forge"');
+    process.exit(1);
+}
+
 logger.info("Scanning the mod folder for files to ignore...");
 
 let modFilesToIgnore = config.modFilesToIgnore;
@@ -92,8 +108,17 @@ if(fs.existsSync('./client/kubejs')) {
     }
 }
 
-logger.info("Platform: " + process.platform);
+logger.info("\nPlatform: " + process.platform);
 logger.info("Minecraft Version: " + config.minecraftVersion);
+logger.info("Loader: " + config.loaderType + "\n");
+if(config.loaderType === 'fabric') {
+    logger.info("Downloading the Fabric server jar...");
+    //
+}
+else if(config.loaderType === 'forge') {
+    logger.info("Downloading the Forge installer...");
+    // 
+}
 
 
 logger.info("Finished copying files to the server folder. You can now start the server by running 'npm run start' in the server folder.");
